@@ -1,55 +1,40 @@
-<<<<<<< HEAD
-:root {
-    --green: #00ff66;
-    --green-dark: #00b84a;
-    --black: #020403;
-    --black-soft: #060907;
-    --card: rgba(7, 13, 9, 0.78);
-    --border: rgba(0, 255, 102, 0.16);
-    --text: #f1f5f2;
-    --muted: #89948d;
-    --mono: "Space Mono", monospace;
-    --sans: "Inter", sans-serif;
-}
 
-=======
-/* =========================================================
-   VARIABLES
-========================================================= */
 
 :root {
 
-    --background: #f4f1ea;
+    --background: #050505;
+    --background-strong: #0b0b0c;
 
-    --surface: #ffffff;
-    --surface-soft: #faf8f4;
+    --surface: #151516;
+    --surface-soft: #1b1b1d;
+    --surface-alt: #242426;
 
-    --text: #171717;
-    --text-secondary: #6b6b66;
-    --text-light: #96938c;
+    --text: #f5f5f5;
+    --text-secondary: #b7b7ba;
+    --text-light: #858589;
 
-    --border: #e4ded3;
+    --border: rgba(255, 255, 255, 0.12);
 
-    --board-dark: #2b211b;
-    --board-light: #d8c7aa;
+    --board-dark: #242426;
+    --board-dark-strong: #111112;
+    --board-light: #e7e7e8;
+    --board-light-soft: #f7f7f7;
 
-    --accent: #b47b3c;
-
-    --success: #2f6b4f;
+    --accent: #f2f2f2;
+    --accent-strong: #c8c8ca;
+    --success: #f2f2f2;
+    --success-soft: #29292b;
 
     --shadow-soft:
-        0 12px 40px rgba(34, 29, 23, 0.07);
+        0 18px 48px rgba(0, 0, 0, 0.3);
 
     --shadow-board:
-        0 24px 60px rgba(34, 29, 23, 0.16);
+        0 28px 70px rgba(0, 0, 0, 0.52);
 }
 
 
-/* =========================================================
-   RESET
-========================================================= */
 
->>>>>>> a7d62cf07220dbf750d4caf68ebce5b3f71d2c2b
+
 * {
     margin: 0;
     padding: 0;
@@ -61,28 +46,23 @@ html {
 }
 
 body {
-<<<<<<< HEAD
-    min-height: 100vh;
-    background: var(--black);
-    color: var(--text);
-    font-family: var(--sans);
-    overflow-x: hidden;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-=======
 
     min-height: 100vh;
 
-    background: var(--background);
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255, 255, 255, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #050505 0%,
+            #0b0b0c 48%,
+            #050505 100%
+        );
 
-    color: var(--text);
+    color: #f5f5f5;
 
     font-family:
         "DM Sans",
@@ -99,7 +79,6 @@ select {
 
 button {
     border: none;
->>>>>>> a7d62cf07220dbf750d4caf68ebce5b3f71d2c2b
 }
 
 a {
@@ -108,10 +87,6 @@ a {
 }
 
 
-<<<<<<< HEAD
-/* =========================================
-   RAIN BACKGROUND
-========================================= */
 
 .rain-background {
     position: fixed;
@@ -265,9 +240,7 @@ a {
 }
 
 
-/* =========================================
-   NAVBAR
-========================================= */
+
 
 .navbar {
     width: min(1400px, calc(100% - 80px));
@@ -382,9 +355,7 @@ a {
 }
 
 
-/* =========================================
-   HERO
-========================================= */
+
 
 .hero {
     min-height: calc(100vh - 90px);
@@ -456,9 +427,7 @@ a {
 }
 
 
-/* =========================================
-   SEARCH
-========================================= */
+
 
 .search-container {
     width: min(780px, 100%);
@@ -568,9 +537,7 @@ a {
 }
 
 
-/* =========================================
-   AI RESPONSE
-========================================= */
+
 
 .ai-response {
     display: none;
@@ -700,9 +667,7 @@ a {
 }
 
 
-/* =========================================
-   SCROLL
-========================================= */
+
 
 .scroll-indicator {
     position: absolute;
@@ -735,9 +700,7 @@ a {
 }
 
 
-/* =========================================
-   COMMON SECTIONS
-========================================= */
+
 
 section:not(.hero) {
     position: relative;
@@ -798,9 +761,7 @@ section:not(.hero) {
 }
 
 
-/* =========================================
-   TOOLS GRID
-========================================= */
+
 
 .tools-grid {
     display: grid;
@@ -919,9 +880,7 @@ section:not(.hero) {
 }
 
 
-/* =========================================
-   HOW IT WORKS
-========================================= */
+
 
 .how-section {
     background: #030604 !important;
@@ -981,9 +940,7 @@ section:not(.hero) {
 }
 
 
-/* =========================================
-   CATEGORIES
-========================================= */
+
 
 .categories-header {
     display: flex;
@@ -1065,9 +1022,7 @@ section:not(.hero) {
 }
 
 
-/* =========================================
-   ABOUT
-========================================= */
+
 
 .about-section {
     background: #020403 !important;
@@ -1147,9 +1102,7 @@ section:not(.hero) {
 }
 
 
-/* =========================================
-   FOOTER
-========================================= */
+
 
 footer {
     background: #010201;
@@ -1204,9 +1157,7 @@ footer {
 }
 
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+
 
 @media (max-width: 900px) {
 
@@ -1399,10 +1350,8 @@ footer {
     .footer-links {
         flex-wrap: wrap;
     }
-=======
-/* =========================================================
-   FOCUS VISIBLE
-   ========================================================= */
+}
+
 
 :focus-visible {
 
@@ -1417,9 +1366,7 @@ footer {
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+
 
 .site-header {
 
@@ -1430,10 +1377,14 @@ footer {
     z-index: 100;
 
     background:
-        rgba(244, 241, 234, 0.92);
+        rgba(9, 11, 13, 0.72);
 
     border-bottom:
-        1px solid var(--border);
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+        0 10px 30px rgba(0, 0, 0, 0.28);
 
     backdrop-filter:
         blur(18px);
@@ -1458,9 +1409,7 @@ footer {
 }
 
 
-/* =========================================================
-   BRAND
-========================================================= */
+
 
 .brand {
 
@@ -1475,6 +1424,7 @@ footer {
     letter-spacing: 0.12em;
 
     font-size: 13px;
+    color: #f3efe8;
 }
 
 .brand-mark {
@@ -1489,9 +1439,14 @@ footer {
 
     justify-content: center;
 
-    background: var(--board-dark);
+    background:
+        linear-gradient(
+            135deg,
+            #3a2d25 0%,
+            #1a130f 100%
+        );
 
-    color: white;
+    color: #f7e7d2;
 
     border-radius: 7px;
 
@@ -1502,6 +1457,7 @@ footer {
     font-size: 17px;
 
     letter-spacing: 0;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
 .brand-name {
@@ -1509,9 +1465,7 @@ footer {
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+
 
 .main-navigation {
 
@@ -1526,7 +1480,7 @@ footer {
 
     position: relative;
 
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.62);
 
     font-size: 13px;
 
@@ -1541,7 +1495,7 @@ footer {
 .nav-link:hover,
 .nav-link.active {
 
-    color: var(--text);
+    color: #ffffff;
 }
 
 .nav-link.active::after {
@@ -1562,9 +1516,7 @@ footer {
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+
 
 .profile-button {
 
@@ -1574,22 +1526,26 @@ footer {
 
     border-radius: 50%;
 
-    background: var(--surface);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.04)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.12);
 
-    color: var(--text);
+    color: #f5efe9;
 
     font-weight: 700;
 
     cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 
-/* =========================================================
-   MAIN
-========================================================= */
+
 
 .game-page {
 
@@ -1605,9 +1561,7 @@ footer {
 }
 
 
-/* =========================================================
-   GAME HEADER
-========================================================= */
+
 
 .game-header {
 
@@ -1630,7 +1584,7 @@ footer {
 
     margin-bottom: 12px;
 
-    color: var(--accent);
+    color: var(--accent-strong);
 
     font-size: 11px;
 
@@ -1669,9 +1623,7 @@ footer {
 }
 
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+
 
 .game-actions {
 
@@ -1706,14 +1658,23 @@ footer {
 
 .primary-button {
 
-    background: var(--board-dark);
+    background: linear-gradient(
+        135deg,
+        var(--accent) 0%,
+        var(--accent-strong) 100%
+    );
 
     color: white;
+    box-shadow: 0 8px 18px rgba(183, 119, 53, 0.22);
 }
 
 .primary-button:hover {
 
-    background: #3b2c23;
+    background: linear-gradient(
+        135deg,
+        var(--accent-strong) 0%,
+        var(--accent) 100%
+    );
 
     transform:
         translateY(-1px);
@@ -1721,7 +1682,7 @@ footer {
 
 .secondary-button {
 
-    background: var(--surface);
+    background: var(--surface-soft);
 
     color: var(--text);
 
@@ -1731,17 +1692,16 @@ footer {
 
 .secondary-button:hover {
 
+    background: var(--surface-alt);
     border-color:
-        #cfc6b8;
+        #d9c5a2;
 
     transform:
         translateY(-1px);
 }
 
 
-/* =========================================================
-   SETTINGS
-========================================================= */
+
 
 .game-settings {
 
@@ -1754,6 +1714,16 @@ footer {
     gap: 24px;
 
     margin-bottom: 42px;
+    padding: 18px 20px;
+
+    background:
+        rgba(15, 17, 19, 0.72);
+    border:
+        1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
 }
 
 .mode-selector {
@@ -1766,15 +1736,15 @@ footer {
 
     padding: 4px;
 
-    background: var(--surface);
+    background: rgba(255,255,255,0.03);
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.08);
 
     border-radius: 10px;
 
     box-shadow:
-        0 4px 18px rgba(34, 29, 23, 0.03);
+        inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .mode-button {
@@ -1786,7 +1756,7 @@ footer {
 
     background: transparent;
 
-    color: var(--text-secondary);
+    color: rgba(255,255,255,0.7);
 
     font-size: 12px;
 
@@ -1800,14 +1770,20 @@ footer {
 
 .mode-button:hover {
 
-    color: var(--text);
+    color: #ffffff;
 }
 
 .mode-button.active {
 
-    background: var(--board-dark);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(183, 119, 53, 0.24),
+            rgba(255,255,255,0.08)
+        );
 
-    color: white;
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .difficulty-wrapper {
@@ -1825,7 +1801,7 @@ footer {
 
 .difficulty-wrapper label {
 
-    color: var(--text-secondary);
+    color: rgba(255,255,255,0.7);
 
     font-size: 12px;
 
@@ -1842,13 +1818,13 @@ footer {
         10px 34px 10px 13px;
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.1);
 
     border-radius: 8px;
 
-    background: var(--surface);
+    background: rgba(255,255,255,0.03);
 
-    color: var(--text);
+    color: #f5efe9;
 
     font-size: 12px;
 
@@ -1864,9 +1840,7 @@ footer {
 }
 
 
-/* =========================================================
-   GAME LAYOUT
-========================================================= */
+
 
 .game-layout {
 
@@ -1883,25 +1857,28 @@ footer {
 }
 
 
-/* =========================================================
-   PLAYER PANEL
-========================================================= */
+
 
 .player-panel {
 
     align-self: center;
 
-    background: var(--surface);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(19, 21, 23, 0.86),
+            rgba(11, 12, 15, 0.93)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.08);
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     padding: 24px;
 
     box-shadow:
-        var(--shadow-soft);
+        0 20px 40px rgba(0, 0, 0, 0.22);
 }
 
 .player-header {
@@ -1950,7 +1927,7 @@ footer {
 
 .player-label {
 
-    color: var(--text-light);
+    color: rgba(255,255,255,0.54);
 
     font-size: 10px;
 
@@ -1972,6 +1949,7 @@ footer {
     font-size: 24px;
 
     font-weight: 600;
+    color: #f3eee9;
 }
 
 .player-status {
@@ -1982,7 +1960,7 @@ footer {
 
     gap: 8px;
 
-    color: var(--text-secondary);
+    color: rgba(255,255,255,0.72);
 
     font-size: 11px;
 
@@ -1991,28 +1969,30 @@ footer {
 
 .status-dot {
 
-    width: 7px;
+    width: 8px;
 
-    height: 7px;
+    height: 8px;
 
     border-radius: 50%;
 
-    background: #d8d4cc;
+    background: #d7cdc3;
+
+    box-shadow: 0 0 0 4px rgba(143, 128, 116, 0.12);
 
     transition:
-        background 0.2s ease;
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .status-dot.active {
 
     background:
         var(--success);
+    box-shadow: 0 0 0 4px rgba(47, 125, 91, 0.16);
 }
 
 
-/* =========================================================
-   CAPTURES
-========================================================= */
+
 
 .captured-section {
 
@@ -2079,9 +2059,7 @@ footer {
 }
 
 
-/* =========================================================
-   BOARD
-========================================================= */
+
 
 .board-section {
 
@@ -2113,12 +2091,16 @@ footer {
     overflow: hidden;
 
     background:
-        var(--board-dark);
+        linear-gradient(
+            135deg,
+            var(--board-dark-strong) 0%,
+            var(--board-dark) 100%
+        );
 
     border:
         8px solid var(--board-dark);
 
-    border-radius: 4px;
+    border-radius: 12px;
 
     box-shadow:
         var(--shadow-board);
@@ -2149,13 +2131,21 @@ footer {
 .cell.light {
 
     background:
-        var(--board-light);
+        linear-gradient(
+            135deg,
+            var(--board-light-soft) 0%,
+            var(--board-light) 100%
+        );
 }
 
 .cell.dark {
 
     background:
-        var(--board-dark);
+        linear-gradient(
+            135deg,
+            #3a2b27 0%,
+            var(--board-dark) 100%
+        );
 }
 
 .cell.selectable {
@@ -2170,9 +2160,7 @@ footer {
 }
 
 
-/* =========================================================
-   PIÈCES
-========================================================= */
+
 
 .piece {
 
@@ -2225,9 +2213,7 @@ footer {
 }
 
 
-/* =========================================================
-   DAMES
-========================================================= */
+
 
 .piece.king::after {
 
@@ -2265,9 +2251,7 @@ footer {
 }
 
 
-/* =========================================================
-   SÉLECTION
-========================================================= */
+
 
 .cell.selected::before {
 
@@ -2285,6 +2269,7 @@ footer {
     z-index: 3;
 
     pointer-events: none;
+    box-shadow: 0 0 0 4px rgba(183, 119, 53, 0.12);
 }
 
 .cell.valid-move {
@@ -2305,7 +2290,10 @@ footer {
     border-radius: 50%;
 
     background:
-        rgba(255, 255, 255, 0.58);
+        rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.22);
 
     z-index: 4;
 
@@ -2319,7 +2307,9 @@ footer {
     height: 30%;
 
     background:
-        rgba(180, 123, 60, 0.72);
+        rgba(183, 119, 53, 0.82);
+    box-shadow:
+        0 0 0 4px rgba(183, 119, 53, 0.2);
 }
 
 .cell.valid-move:hover {
@@ -2329,9 +2319,7 @@ footer {
 }
 
 
-/* =========================================================
-   COORDONNÉES
-========================================================= */
+
 
 .board-coordinates {
 
@@ -2389,9 +2377,7 @@ footer {
 }
 
 
-/* =========================================================
-   BOARD FOOTER
-========================================================= */
+
 
 .board-footer {
 
@@ -2451,9 +2437,7 @@ footer {
 }
 
 
-/* =========================================================
-   INFORMATIONS
-========================================================= */
+
 
 .game-information {
 
@@ -2476,12 +2460,18 @@ footer {
     padding: 28px;
 
     background:
-        var(--surface);
+        linear-gradient(
+            180deg,
+            rgba(17, 19, 20, 0.9),
+            rgba(10, 12, 13, 0.94)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.08);
 
-    border-radius: 12px;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(10px);
 }
 
 .info-number {
@@ -2505,12 +2495,13 @@ footer {
     font-size: 15px;
 
     font-weight: 700;
+    color: #f3efe9;
 }
 
 .info-content p {
 
     color:
-        var(--text-secondary);
+        rgba(255,255,255,0.7);
 
     font-size: 12px;
 
@@ -2518,9 +2509,7 @@ footer {
 }
 
 
-/* =========================================================
-   CLASSEMENT
-========================================================= */
+
 
 .ranking-section {
 
@@ -2564,17 +2553,15 @@ footer {
 }
 
 
-/* =========================================================
-   FOOTER
-========================================================= */
+
 
 .site-footer {
 
     border-top:
-        1px solid var(--border);
+        1px solid rgba(255,255,255,0.08);
 
     background:
-        var(--surface);
+        rgba(8, 9, 11, 0.9);
 }
 
 .footer-container {
@@ -2597,7 +2584,7 @@ footer {
     gap: 20px;
 
     color:
-        var(--text-light);
+        rgba(255,255,255,0.58);
 
     font-size: 11px;
 }
@@ -2611,7 +2598,7 @@ footer {
     gap: 9px;
 
     color:
-        var(--text);
+        #f4efe9;
 
     font-size: 11px;
 
@@ -2627,12 +2614,16 @@ footer {
     height: 25px;
 
     font-size: 13px;
+    background:
+        linear-gradient(
+            135deg,
+            #4b352d 0%,
+            #1c1714 100%
+        );
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+
 
 .modal {
 
@@ -2651,10 +2642,10 @@ footer {
     padding: 24px;
 
     background:
-        rgba(23, 19, 15, 0.58);
+        rgba(8, 10, 12, 0.72);
 
     backdrop-filter:
-        blur(8px);
+        blur(10px);
 }
 
 .modal.hidden {
@@ -2674,12 +2665,17 @@ footer {
     padding: 42px;
 
     background:
-        var(--surface);
+        linear-gradient(
+            180deg,
+            rgba(18, 20, 22, 0.96),
+            rgba(10, 12, 14, 0.96)
+        );
 
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 14px;
 
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.2);
+        0 30px 80px rgba(0, 0, 0, 0.35);
 
     text-align: center;
 }
@@ -2695,12 +2691,13 @@ footer {
     font-weight: 600;
 
     margin-bottom: 13px;
+    color: #f4efe9;
 }
 
 .modal-content > p:not(.eyebrow) {
 
     color:
-        var(--text-secondary);
+        rgba(255,255,255,0.72);
 
     font-size: 13px;
 
@@ -2722,10 +2719,12 @@ footer {
     border-radius: 50%;
 
     background:
-        var(--surface-soft);
+        rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
 
     color:
-        var(--text-secondary);
+        rgba(255,255,255,0.75);
 
     font-size: 20px;
 
@@ -2738,9 +2737,7 @@ footer {
 }
 
 
-/* =========================================================
-   RESPONSIVE TABLET
-========================================================= */
+
 
 @media (max-width: 1150px) {
 
@@ -2767,9 +2764,7 @@ footer {
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+
 
 @media (max-width: 950px) {
 
@@ -2836,9 +2831,7 @@ footer {
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+
 
 @media (max-width: 600px) {
 
@@ -2977,9 +2970,203 @@ footer {
 }
 
 .turn-indicator-dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--success);
->>>>>>> a7d62cf07220dbf750d4caf68ebce5b3f71d2c2b
+    box-shadow: 0 0 0 4px rgba(47, 125, 91, 0.14);
+}
+
+.site-header,
+.game-settings,
+.player-panel,
+.info-card,
+.site-footer,
+.modal-content {
+    background: rgba(18, 18, 20, 0.76);
+    border-color: rgba(255, 255, 255, 0.11);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 18px 48px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.game-page > section {
+    background: transparent;
+    border-top: 0;
+}
+
+.site-header {
+    background: rgba(8, 8, 9, 0.78);
+}
+
+.brand,
+.player-panel h2,
+.info-content h3,
+.footer-brand,
+.game-header h1,
+.section-heading h2 {
+    color: #f5f5f5;
+}
+
+.brand-mark,
+.footer-brand .brand-mark {
+    color: #101011;
+    background: linear-gradient(145deg, #f5f5f5, #bdbdc0);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.nav-link,
+.game-description,
+.player-status,
+.info-content p,
+.footer-container,
+.board-footer {
+    color: #b8b8bb;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffffff;
+}
+
+.profile-button,
+.mode-selector,
+.mode-button.active,
+.difficulty-wrapper select,
+.secondary-button,
+.modal-close {
+    color: #f2f2f3;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.mode-button {
+    color: #b8b8bb;
+}
+
+.mode-button:hover,
+.mode-button.active {
+    color: #ffffff;
+}
+
+.mode-button.active {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(255, 255, 255, 0.07)
+    );
+}
+
+.primary-button {
+    color: #111112;
+    background: linear-gradient(135deg, #ffffff, #c9c9cc);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
+}
+
+.primary-button:hover {
+    color: #050505;
+    background: linear-gradient(135deg, #ffffff, #e1e1e3);
+}
+
+.secondary-button:hover,
+.profile-button:hover,
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.difficulty-wrapper select option {
+    color: #f5f5f5;
+    background: #171719;
+}
+
+.difficulty-wrapper select:focus,
+.secondary-button:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+}
+
+.board {
+    background: #111112;
+    border-color: #181819;
+}
+
+.cell.dark {
+    background: linear-gradient(145deg, #303033, #1b1b1d);
+}
+
+.cell.light {
+    background: linear-gradient(145deg, #fafafa, #d9d9dc);
+}
+
+.piece.white {
+    background: radial-gradient(circle at 35% 30%, #ffffff, #dedee1 76%, #bcbcc0);
+    border-color: #a7a7ac;
+}
+
+.piece.black {
+    background: radial-gradient(circle at 35% 30%, #555559, #171719 74%, #080809);
+    border-color: #080809;
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.piece.white.king::after {
+    color: #171719;
+}
+
+.piece.black.king::after {
+    color: #f5f5f5;
+}
+
+.cell.selected::before {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
+}
+
+.cell.capture-move::after {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
+}
+
+.board-coordinates,
+.captured-label,
+.player-label {
+    color: #96969a;
+}
+
+.captured-section,
+.ranking-section {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.captured-mini.black {
+    background: #171719;
+    border: 1px solid #77777c;
+}
+
+.captured-mini.white {
+    background: #f5f5f5;
+    border-color: #bdbdc0;
+}
+
+.ranking-placeholder {
+    color: #b8b8bb;
+    background: rgba(18, 18, 20, 0.76);
+    border-color: rgba(255, 255, 255, 0.11);
+}
+
+.turn-indicator-dot,
+.status-dot.active,
+.rule-indicator {
+    background: #f2f2f2;
+}
+
+.status-dot.active {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+}
+
+:focus-visible {
+    outline-color: #ffffff;
 }

@@ -1,449 +1,7 @@
-<<<<<<< HEAD
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =========================================
-       ELEMENTS
-    ========================================= */
-
-    const searchInput = document.getElementById("searchInput");
-    const searchButton = document.getElementById("searchButton");
-    const aiResponse = document.getElementById("aiResponse");
-    const aiMessage = document.getElementById("aiMessage");
-    const resultsGrid = document.getElementById("resultsGrid");
-
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    const suggestionButtons =
-        document.querySelectorAll(".search-suggestions button");
-
-
-    /* =========================================
-       SEARCH DATABASE
-    ========================================= */
-
-    const searchDatabase = {
-
-        background: {
-            message:
-                "Vous recherchez un outil permettant de supprimer automatiquement l'arrière-plan d'une image.",
-
-            results: [
-                {
-                    name: "Remove.bg",
-                    description:
-                        "Supprime automatiquement l'arrière-plan de vos images.",
-                    url: "https://www.remove.bg/"
-                },
-                {
-                    name: "Canva",
-                    description:
-                        "Éditez vos images et utilisez la suppression d'arrière-plan.",
-                    url: "https://www.canva.com/"
-                }
-            ]
-        },
-
-        logo: {
-            message:
-                "Vous recherchez un outil permettant de créer ou concevoir un logo.",
-
-            results: [
-                {
-                    name: "Canva",
-                    description:
-                        "Créez facilement des logos et éléments graphiques.",
-                    url: "https://www.canva.com/create/logos/"
-                },
-                {
-                    name: "Adobe Express",
-                    description:
-                        "Créez rapidement des designs et logos personnalisés.",
-                    url: "https://www.adobe.com/express/"
-                }
-            ]
-        },
-
-        pdf: {
-            message:
-                "Vous recherchez un outil permettant de compresser ou optimiser un fichier PDF.",
-
-            results: [
-                {
-                    name: "iLovePDF",
-                    description:
-                        "Compressez, convertissez et éditez vos fichiers PDF.",
-                    url: "https://www.ilovepdf.com/"
-                },
-                {
-                    name: "Smallpdf",
-                    description:
-                        "Une suite d'outils en ligne pour vos documents PDF.",
-                    url: "https://smallpdf.com/"
-                }
-            ]
-        },
-
-        video: {
-            message:
-                "Vous recherchez un outil pour créer ou modifier des vidéos.",
-
-            results: [
-                {
-                    name: "CapCut",
-                    description:
-                        "Plateforme de création et de montage vidéo.",
-                    url: "https://www.capcut.com/"
-                },
-                {
-                    name: "Canva",
-                    description:
-                        "Créez des vidéos et animations directement en ligne.",
-                    url: "https://www.canva.com/video-editor/"
-                }
-            ]
-        },
-
-        code: {
-            message:
-                "Vous recherchez un environnement ou un outil pour développer du logiciel.",
-
-            results: [
-                {
-                    name: "GitHub",
-                    description:
-                        "Hébergez, gérez et collaborez sur vos projets de code.",
-                    url: "https://github.com/"
-                },
-                {
-                    name: "Stack Overflow",
-                    description:
-                        "Trouvez des réponses aux problèmes de programmation.",
-                    url: "https://stackoverflow.com/"
-                }
-            ]
-        },
-
-        generic: {
-            message:
-                "J'ai analysé votre demande. Voici quelques outils qui pourraient correspondre à votre recherche.",
-
-            results: [
-                {
-                    name: "Canva",
-                    description:
-                        "Une plateforme polyvalente pour créer différents contenus.",
-                    url: "https://www.canva.com/"
-                },
-                {
-                    name: "Google",
-                    description:
-                        "Recherchez rapidement des ressources et services sur le web.",
-                    url: "https://www.google.com/"
-                }
-            ]
-        }
-
-    };
-
-
-    /* =========================================
-       DETECT SEARCH TYPE
-    ========================================= */
-
-    function detectSearch(query) {
-
-        const text = query.toLowerCase();
-
-        if (
-            text.includes("background") ||
-            text.includes("arrière-plan") ||
-            text.includes("fond") ||
-            text.includes("photo")
-        ) {
-            return searchDatabase.background;
-        }
-
-        if (
-            text.includes("logo") ||
-            text.includes("design")
-        ) {
-            return searchDatabase.logo;
-        }
-
-        if (
-            text.includes("pdf") ||
-            text.includes("document") ||
-            text.includes("compresser")
-        ) {
-            return searchDatabase.pdf;
-        }
-
-        if (
-            text.includes("vidéo") ||
-            text.includes("video") ||
-            text.includes("montage")
-        ) {
-            return searchDatabase.video;
-        }
-
-        if (
-            text.includes("code") ||
-            text.includes("programmer") ||
-            text.includes("développer") ||
-            text.includes("developer")
-        ) {
-            return searchDatabase.code;
-        }
-
-        return searchDatabase.generic;
-    }
-
-
-    /* =========================================
-       PERFORM SEARCH
-    ========================================= */
-
-    function performSearch() {
-
-        const query = searchInput.value.trim();
-
-        if (!query) {
-
-            searchInput.focus();
-
-            searchInput.style.borderBottom =
-                "1px solid rgba(255,0,0,0.5)";
-
-            setTimeout(() => {
-                searchInput.style.borderBottom = "none";
-            }, 700);
-
-            return;
-        }
-
-
-        /* Loading state */
-
-        aiResponse.classList.add("visible");
-
-        aiMessage.textContent =
-            "Analyse de votre demande en cours...";
-
-        resultsGrid.innerHTML = `
-            <div class="tool-card">
-                <div class="tool-number">...</div>
-
-                <div class="tool-info">
-                    <h3>Analyse</h3>
-                    <p>Recherche des outils correspondants...</p>
-                </div>
-            </div>
-        `;
-
-
-        /* Simulate AI processing */
-
-        setTimeout(() => {
-
-            const result = detectSearch(query);
-
-            aiMessage.textContent = result.message;
-
-            resultsGrid.innerHTML = "";
-
-            result.results.forEach((item, index) => {
-
-                const card = document.createElement("div");
-
-                card.className = "tool-card";
-
-                card.innerHTML = `
-                    <div class="tool-number">
-                        ${String(index + 1).padStart(2, "0")}
-                    </div>
-
-                    <div class="tool-info">
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
-                    </div>
-
-                    <a
-                        href="${item.url}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="tool-link"
-                    >
-                        Ouvrir
-                        <span>↗</span>
-                    </a>
-                `;
-
-                resultsGrid.appendChild(card);
-
-            });
-
-            aiResponse.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        }, 900);
-    }
-
-
-    /* =========================================
-       SEARCH BUTTON
-    ========================================= */
-
-    searchButton.addEventListener("click", performSearch);
-
-
-    /* =========================================
-       ENTER KEY
-    ========================================= */
-
-    searchInput.addEventListener("keydown", (event) => {
-
-        if (event.key === "Enter") {
-            performSearch();
-        }
-
-    });
-
-
-    /* =========================================
-       SUGGESTIONS
-    ========================================= */
-
-    suggestionButtons.forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            const query = button.dataset.query;
-
-            searchInput.value = query;
-
-            performSearch();
-
-        });
-
-    });
-
-
-    /* =========================================
-       MOBILE MENU
-    ========================================= */
-
-    mobileMenuBtn.addEventListener("click", () => {
-
-        mobileMenu.classList.toggle("open");
-
-    });
-
-
-    /* =========================================
-       CLOSE MOBILE MENU
-    ========================================= */
-
-    document.querySelectorAll(".mobile-menu a").forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("open");
-
-        });
-
-    });
-
-
-    /* =========================================
-       NAVBAR SCROLL EFFECT
-    ========================================= */
-
-    const navbar = document.querySelector(".navbar");
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 50) {
-
-            navbar.style.background =
-                "rgba(2, 4, 3, 0.75)";
-
-            navbar.style.backdropFilter =
-                "blur(12px)";
-
-        } else {
-
-            navbar.style.background = "transparent";
-
-            navbar.style.backdropFilter = "none";
-
-        }
-
-    });
-
-
-    /* =========================================
-       START BUTTONS
-    ========================================= */
-
-    document.querySelectorAll(".start-btn").forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            document
-                .getElementById("home")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            setTimeout(() => {
-                searchInput.focus();
-            }, 600);
-
-        });
-
-    });
-
-
-    /* =========================================
-       CATEGORY BUTTONS
-    ========================================= */
-
-    document.querySelectorAll(".category-list button")
-        .forEach((button) => {
-
-            button.addEventListener("click", () => {
-
-                const category =
-                    button.querySelector("strong").textContent;
-
-                searchInput.value =
-                    `Je cherche des outils de ${category}`;
-
-                document
-                    .getElementById("home")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                setTimeout(() => {
-                    performSearch();
-                }, 700);
-
-            });
-
-        });
-
-});
-=======
 "use strict";
 
 
-/* =========================================================
-   CONFIGURATION
-========================================================= */
+
 
 const BOARD_SIZE = 10;
 
@@ -453,9 +11,8 @@ const BLACK = "black";
 const EMPTY = null;
 
 
-/*
-    Profondeur de recherche de l'IA.
-*/
+
+
 
 const AI_DEPTH = {
     easy: 1,
@@ -464,10 +21,8 @@ const AI_DEPTH = {
 };
 
 
-/*
-    Limite de calcul pour éviter que
-    le navigateur reste bloqué trop longtemps.
-*/
+
+
 
 const AI_NODE_LIMIT = {
     easy: 2000,
@@ -476,9 +31,7 @@ const AI_NODE_LIMIT = {
 };
 
 
-/* =========================================================
-   DOM
-========================================================= */
+
 
 const boardElement =
     document.getElementById("board");
@@ -550,9 +103,7 @@ const modeButtons =
     document.querySelectorAll(".mode-button");
 
 
-/* =========================================================
-   DIRECTIONS
-========================================================= */
+
 
 const DIRECTIONS = [
 
@@ -564,9 +115,7 @@ const DIRECTIONS = [
 ];
 
 
-/* =========================================================
-   ÉTAT DU JEU
-========================================================= */
+
 
 let board = [];
 
@@ -597,19 +146,15 @@ let aiThinkTimer = null;
 let aiNodes = 0;
 
 
-/*
-    Objectif de la série de prises en cours
-    (règle de la prise maximale).
-*/
+
+
 
 let turnCaptureTarget = 0;
 
 let turnCaptures = 0;
 
 
-/* =========================================================
-   INITIALISATION
-========================================================= */
+
 
 function initializeGame() {
 
@@ -647,9 +192,7 @@ function initializeGame() {
 }
 
 
-/* =========================================================
-   CRÉATION DU DAMIER
-========================================================= */
+
 
 function createInitialBoard() {
 
@@ -704,9 +247,7 @@ function createInitialBoard() {
 }
 
 
-/* =========================================================
-   AFFICHAGE DU DAMIER
-========================================================= */
+
 
 function renderBoard() {
 
@@ -829,9 +370,7 @@ function renderBoard() {
 }
 
 
-/* =========================================================
-   AFFICHAGE D'UNE PIÈCE
-   ========================================================= */
+
 
 function describeCell(
     row,
@@ -895,9 +434,7 @@ function renderPiece(
 }
 
 
-/* =========================================================
-   CLIC UTILISATEUR
-========================================================= */
+
 
 function handleCellClick(
     row,
@@ -912,11 +449,7 @@ function handleCellClick(
     }
 
 
-    /*
-        En mode ordinateur,
-        le joueur contrôle uniquement
-        les blancs.
-    */
+    
 
     if (
         gameMode === "ai" &&
@@ -972,9 +505,7 @@ function handleCellClick(
 }
 
 
-/* =========================================================
-   SÉLECTION D'UNE PIÈCE
-========================================================= */
+
 
 function selectPiece(
     row,
@@ -993,11 +524,7 @@ function selectPiece(
     }
 
 
-    /*
-        Seuls les coups qui atteignent
-        le nombre maximal de prises
-        sont jouables.
-    */
+    
 
     const moves =
         getTurnMoves(
@@ -1039,9 +566,7 @@ function selectPiece(
 }
 
 
-/* =========================================================
-   EXÉCUTER UN COUP HUMAIN
-========================================================= */
+
 
 function executeHumanMove(
     fromRow,
@@ -1074,9 +599,7 @@ function executeHumanMove(
         EMPTY;
 
 
-    /*
-        Capture.
-    */
+    
 
     if (move.capture) {
 
@@ -1104,14 +627,7 @@ function executeHumanMove(
     }
 
 
-    /*
-        Promotion.
-
-        Un pion qui traverse la dernière rangée
-        pendant une série de prises doit
-        terminer son coup en pion : la
-        promotion n'a lieu qu'à la fin.
-    */
+    
 
     if (move.capture) {
 
@@ -1162,9 +678,7 @@ function executeHumanMove(
 }
 
 
-/* =========================================================
-   FIN DU TOUR
-========================================================= */
+
 
 function finishTurn() {
 
@@ -1188,9 +702,7 @@ function finishTurn() {
     }
 
 
-    /*
-        L'ordinateur joue les noirs.
-    */
+    
 
     if (
         gameMode === "ai" &&
@@ -1206,9 +718,7 @@ function finishTurn() {
 }
 
 
-/* =========================================================
-   COUPS NORMAUX
-========================================================= */
+
 
 function getNormalMovesFromBoard(
     state,
@@ -1226,9 +736,7 @@ function getNormalMovesFromBoard(
     const moves = [];
 
 
-    /*
-        Pion.
-    */
+    
 
     if (!piece.king) {
 
@@ -1270,13 +778,10 @@ function getNormalMovesFromBoard(
     }
 
 
-    /*
-        Dame.
-    */
+    
 
     for (
-        const [dr, dc]
-        of DIRECTIONS
+        const [dr, dc] of DIRECTIONS
     ) {
 
         let nr =
@@ -1312,9 +817,7 @@ function getNormalMovesFromBoard(
 }
 
 
-/* =========================================================
-   CAPTURES
-========================================================= */
+
 
 function getCaptureMovesFromBoard(
     state,
@@ -1330,9 +833,7 @@ function getCaptureMovesFromBoard(
     }
 
 
-    /*
-        Pion.
-    */
+    
 
     if (!piece.king) {
 
@@ -1340,8 +841,7 @@ function getCaptureMovesFromBoard(
 
 
         for (
-            const [dr, dc]
-            of DIRECTIONS
+            const [dr, dc] of DIRECTIONS
         ) {
 
             const middleRow =
@@ -1409,16 +909,13 @@ function getCaptureMovesFromBoard(
     }
 
 
-    /*
-        Dame.
-    */
+    
 
     const captures = [];
 
 
     for (
-        const [dr, dc]
-        of DIRECTIONS
+        const [dr, dc] of DIRECTIONS
     ) {
 
         let nr =
@@ -1505,9 +1002,7 @@ function getCaptureMovesFromBoard(
 }
 
 
-/* =========================================================
-   TOUTES LES CAPTURES
-========================================================= */
+
 
 function getAllCaptureMoves(
     state,
@@ -1571,14 +1066,10 @@ function getAllCaptureMoves(
 
     return captures;
 }
-/* =========================================================
-   COUPS LÉGAUX D'UN TOUR
-   ========================================================= */
 
-/*
-    Nombre maximal de pièces qu'un joueur
-    peut capturer en un seul tour.
-*/
+
+
+
 
 function getMaxCaptures(
     state,
@@ -1630,12 +1121,6 @@ function getMaxCaptures(
 }
 
 
-/*
-    Premiers coups d'une série de prises
-    partant d'une pièce, parmi les séries
-    qui atteignent exactement "required"
-    prises.
-*/
 
 function getSequenceFirstMoves(
     state,
@@ -1643,7 +1128,6 @@ function getSequenceFirstMoves(
     col,
     required
 ) {
-
     if (required <= 0) {
         return [];
     }
@@ -1702,10 +1186,6 @@ function getSequenceFirstMoves(
 }
 
 
-/*
-    Tous les coups que le joueur
-    a le droit de jouer.
-*/
 
 function getTurnMoves(
     state,
@@ -1805,10 +1285,8 @@ function getTurnMoves(
 }
 
 
-/*
-    Test rapide : le joueur
-    a-t-il au moins un coup légal ?
-*/
+
+
 
 function hasLegalMove(
     state,
@@ -1854,9 +1332,7 @@ function hasLegalMove(
 }
 
 
-/* =========================================================
-   PROMOTION
-========================================================= */
+
 
 function promoteIfNeeded(
     state,
@@ -1892,9 +1368,7 @@ function promoteIfNeeded(
 }
 
 
-/* =========================================================
-   CAPTURES COMPTABILISÉES
-========================================================= */
+
 
 function registerCapture(
     capturedColor
@@ -1916,9 +1390,7 @@ function registerCapture(
 }
 
 
-/* =========================================================
-   CHANGER DE JOUEUR
-========================================================= */
+
 
 function switchPlayer() {
 
@@ -1929,9 +1401,7 @@ function switchPlayer() {
 }
 
 
-/* =========================================================
-   RÉCUPÉRER LES PIÈCES
-========================================================= */
+
 
 function getPieces(
     state,
@@ -1976,9 +1446,7 @@ function getPieces(
 }
 
 
-/* =========================================================
-   VÉRIFICATION FIN DE PARTIE
-========================================================= */
+
 
 function checkGameState() {
 
@@ -2034,9 +1502,7 @@ function checkGameState() {
 }
 
 
-/* =========================================================
-   INTERFACE
-========================================================= */
+
 
 function updateInterface() {
 
@@ -2081,22 +1547,22 @@ function updateInterface() {
 
         blackStatus.textContent =
             aiThinking
-                ? "Réflexion..."
+                ? "L'ordinateur réfléchit..."
                 : currentPlayer === BLACK
-                    ? "À jouer"
+                    ? "Tour de l'ordinateur"
                     : "En attente";
 
     } else {
 
         whiteStatus.textContent =
             currentPlayer === WHITE
-                ? "À jouer"
+                ? "Tour des blancs"
                 : "En attente";
 
 
         blackStatus.textContent =
             currentPlayer === BLACK
-                ? "À jouer"
+                ? "Tour des noirs"
                 : "En attente";
     }
 
@@ -2129,9 +1595,7 @@ function updateInterface() {
 }
 
 
-/* =========================================================
-   AFFICHER LES CAPTURES
-========================================================= */
+
 
 function updateCapturedPieces() {
 
@@ -2142,10 +1606,7 @@ function updateCapturedPieces() {
         "";
 
 
-    /*
-        Les pièces noires capturées
-        apparaissent chez les blancs.
-    */
+    
 
     for (
         let i = 0;
@@ -2165,10 +1626,7 @@ function updateCapturedPieces() {
     }
 
 
-    /*
-        Les pièces blanches capturées
-        apparaissent chez les noirs.
-    */
+    
 
     for (
         let i = 0;
@@ -2189,9 +1647,7 @@ function updateCapturedPieces() {
 }
 
 
-/* =========================================================
-   IA — COPIE DU DAMIER
-========================================================= */
+
 
 function cloneBoard(state) {
 
@@ -2210,9 +1666,7 @@ function cloneBoard(state) {
 }
 
 
-/* =========================================================
-   IA — APPLIQUER UN COUP
-========================================================= */
+
 
 function applySingleMove(
     state,
@@ -2271,9 +1725,7 @@ function applySingleMove(
 }
 
 
-/* =========================================================
-   IA — GÉNÉRATION DES PRISES MULTIPLES
-========================================================= */
+
 
 function generateCaptureSequences(
     state,
@@ -2291,12 +1743,7 @@ function generateCaptureSequences(
         );
 
 
-    /*
-        Plus aucune capture :
-        la série est terminée. La promotion
-        n'a lieu que maintenant, sur la case
-        d'arrivée.
-    */
+    
 
     if (
         captures.length === 0
@@ -2333,9 +1780,7 @@ function generateCaptureSequences(
     }
 
 
-    /*
-        Continuer chaque possibilité.
-    */
+    
 
     for (
         const capture
@@ -2380,9 +1825,7 @@ function generateCaptureSequences(
 }
 
 
-/* =========================================================
-   IA — COUPS COMPLETS
-========================================================= */
+
 function getAllLegalTurnMoves(
     state,
     color
@@ -2395,11 +1838,7 @@ function getAllLegalTurnMoves(
         );
 
 
-    /*
-        Les captures sont prioritaires :
-        seules les séries atteignant
-        le maximum sont légales.
-    */
+    
 
     if (
         maxCaptures > 0
@@ -2434,10 +1873,7 @@ function getAllLegalTurnMoves(
     }
 
 
-    /*
-        Aucun capture :
-        mouvements normaux.
-    */
+    
 
     const moves = [];
 
@@ -2496,9 +1932,7 @@ function getAllLegalTurnMoves(
 }
 
 
-/* =========================================================
-   IA — ÉVALUATION
-========================================================= */
+
 
 function evaluateBoard(
     state
@@ -2532,9 +1966,7 @@ function evaluateBoard(
             }
 
 
-            /*
-                Valeur de base.
-            */
+            
 
             let value =
                 piece.king
@@ -2542,9 +1974,7 @@ function evaluateBoard(
                     : 100;
 
 
-            /*
-                Bonus d'avancement.
-            */
+            
 
             const progress =
                 piece.color === BLACK
@@ -2561,9 +1991,7 @@ function evaluateBoard(
                 );
 
 
-            /*
-                Bonus de position centrale.
-            */
+            
 
             const centerBonus =
 
@@ -2629,9 +2057,7 @@ function evaluateBoard(
 }
 
 
-/* =========================================================
-   IA — MINIMAX + ALPHA-BÊTA
-========================================================= */
+
 
 function minimax(
     state,
@@ -2644,9 +2070,7 @@ function minimax(
     aiNodes++;
 
 
-    /*
-        Protection contre trop de calculs.
-    */
+    
 
     if (
         aiNodes >=
@@ -2676,10 +2100,7 @@ function minimax(
         );
 
 
-    /*
-        Aucun mouvement :
-        partie terminée.
-    */
+    
 
     if (
         moves.length === 0
@@ -2691,10 +2112,7 @@ function minimax(
     }
 
 
-    /*
-        On examine d'abord
-        les prises.
-    */
+    
 
     moves.sort(
         (a, b) =>
@@ -2703,9 +2121,7 @@ function minimax(
     );
 
 
-    /*
-        Maximisation pour les noirs.
-    */
+    
 
     if (
         player === BLACK
@@ -2763,9 +2179,7 @@ function minimax(
     }
 
 
-    /*
-        Minimisation pour les blancs.
-    */
+    
 
     let best =
         Infinity;
@@ -2819,9 +2233,7 @@ function minimax(
 }
 
 
-/* =========================================================
-   IA — CHOIX DU COUP
-========================================================= */
+
 
 function chooseAIMove() {
 
@@ -2840,10 +2252,7 @@ function chooseAIMove() {
     }
 
 
-    /*
-        Facile :
-        coup aléatoire parmi les coups légaux.
-    */
+    
 
     if (
         aiDifficulty === "easy"
@@ -2874,10 +2283,7 @@ function chooseAIMove() {
     let bestMoves = [];
 
 
-    /*
-        Les captures sont étudiées
-        en premier.
-    */
+    
 
     moves.sort(
         (a, b) =>
@@ -2931,10 +2337,7 @@ function chooseAIMove() {
         }
 
 
-        /*
-            Si la limite de calcul
-            est atteinte, on arrête.
-        */
+        
 
         if (
             aiNodes >=
@@ -2946,10 +2349,7 @@ function chooseAIMove() {
     }
 
 
-    /*
-        Plusieurs coups peuvent avoir
-        la même évaluation.
-    */
+    
 
     return (
         bestMoves[
@@ -2964,9 +2364,7 @@ function chooseAIMove() {
 }
 
 
-/* =========================================================
-   IA — JOUER
-========================================================= */
+
 
 function makeAIMove() {
 
@@ -2987,10 +2385,7 @@ function makeAIMove() {
     updateInterface();
 
 
-    /*
-        Petit délai pour que l'utilisateur
-        voie que l'IA réfléchit.
-    */
+    
 
     aiThinkTimer =
         setTimeout(
@@ -2998,11 +2393,7 @@ function makeAIMove() {
 
             aiThinkTimer = null;
 
-            /*
-                La partie a pu être relancée
-                ou abandonnée pendant
-                la réflexion.
-            */
+            
 
             if (
                 gameOver ||
@@ -3028,9 +2419,7 @@ function makeAIMove() {
             }
 
 
-            /*
-                Comptage avant/après.
-            */
+            
 
             const beforeWhite =
                 getPieces(
@@ -3046,9 +2435,7 @@ function makeAIMove() {
                 ).length;
 
 
-            /*
-                Application du coup complet.
-            */
+            
 
             board =
                 result.board;
@@ -3110,9 +2497,7 @@ function makeAIMove() {
 }
 
 
-/* =========================================================
-   FIN DE PARTIE
-========================================================= */
+
 
 function finishGame(
     title,
@@ -3144,9 +2529,7 @@ function finishGame(
 }
 
 
-/* =========================================================
-   ABANDONNER
-========================================================= */
+
 
 function surrenderGame() {
 
@@ -3182,9 +2565,7 @@ function surrenderGame() {
 }
 
 
-/* =========================================================
-   SÉLECTION
-========================================================= */
+
 
 function clearSelection() {
 
@@ -3194,9 +2575,7 @@ function clearSelection() {
 }
 
 
-/* =========================================================
-   MODAL
-   ========================================================= */
+
 
 function showModal() {
 
@@ -3209,10 +2588,8 @@ function showModal() {
 }
 
 
-/*
-    Une partie terminée ne peut pas être
-    refermée sans en commencer une autre.
-*/
+
+
 
 function requestCloseModal() {
 
@@ -3234,9 +2611,7 @@ function hideModal() {
 }
 
 
-/* =========================================================
-   MODE DE JEU
-========================================================= */
+
 
 function updateModeInterface() {
 
@@ -3271,9 +2646,7 @@ function updateModeInterface() {
 
     gameDescription.textContent =
         aiMode
-
             ? "Affrontez l'ordinateur sur un damier international 10 × 10."
-
             : "Affrontez un autre joueur sur un damier international 10 × 10.";
 
 
@@ -3290,9 +2663,7 @@ function updateModeInterface() {
 }
 
 
-/* =========================================================
-   ÉVÉNEMENTS
-========================================================= */
+
 
 modeButtons.forEach(
     button => {
@@ -3392,9 +2763,7 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   UTILITAIRE
-   ========================================================= */
+
 
 function clearAiTimers() {
 
@@ -3426,9 +2795,6 @@ function isInsideBoard(
 }
 
 
-/* =========================================================
-   LANCEMENT
-========================================================= */
+
 
 initializeGame();
->>>>>>> a7d62cf07220dbf750d4caf68ebce5b3f71d2c2b
